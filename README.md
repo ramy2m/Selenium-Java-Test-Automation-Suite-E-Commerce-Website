@@ -47,7 +47,7 @@ ecommerce-ui-automation/
 ## How to Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/ecommerce-ui-automation.git
+   https://github.com/ramy2m/Selenium-Java-Test-Automation-Suite-E-Commerce-Website
 2. Install dependencies:
  mvn clean install
 3. Run the test suite:
