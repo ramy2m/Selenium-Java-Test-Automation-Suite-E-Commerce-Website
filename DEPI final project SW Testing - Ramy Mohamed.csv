@@ -1,0 +1,96 @@
+ID,Title,Preconditions,Steps,Test Data,Expected result,Actual Result,Status,Bug report link
+"1- Cart Persistence (items remain after refresh/login)
+",,,,,,,,https://docs.google.com/document/d/1DiJe4uPuW0Tzn5RnBNYCVgecT9CDkjxsFgruVzErIZU/edit?tab=t.0
+TC_CP1,Add items before login then login and check cart,"1. Open https://www.demoblaze.com/
+User not logged in","2. Add 2 items to cart
+3. Log in
+4. Check cart","username=guest_user2025
+password=1
+item= Nexus 6, Nokia lumia 1520        ",Items added as guest should remain in cart after login,"Cart is empty, and items disappeared.",Fail,
+TC_CP2,"Add items before login, then login and add more, then logout","1. Open https://www.demoblaze.com/
+User has account, logged out","
+2. Add 2 items as guest
+3. Log in and add 2 more items
+4. Log out
+5. Check cart","username=guest_user2025
+password=1
+item= Nexus 6, Nokia lumia 1520        ",Cart behavior after logout follows system design (empty / persistent),"After log out, cart only has the items were added before log in.",Fail,
+TC_CP3,Guest cart after refresh,"1. Open https://www.demoblaze.com/
+User not logged in","
+2. Add 2 items as guest and refresh page
+3. Open cart","
+item= Nexus 6, Nokia lumia 1520",Items remain after refresh,Items remain after refresh,Pass,
+TC_CP4,Logged-in cart after refresh,"1. Open https://www.demoblaze.com/
+2. User logged in","
+3. Add 2 items and Refresh page
+4. Open cart","username=guest_user2025
+password=1
+item= Nexus 6, Nokia lumia 1520        ",Items remain after refresh,Items remain after refresh,Pass,
+TC_CP5,Logged-in cart after logout/login,"1. Open https://www.demoblaze.com/
+User logged in","3. Add 2 items
+4. Log out
+5. Log in again
+6. Open cart","username=guest_user2025
+password=1
+item= Nexus 6, Nokia lumia 1520        ",Items still in cart,Items still in cart,Pass,
+TC_CP6,Guest cart after clearing cookies,"1. Open https://www.demoblaze.com/
+User not logged in","2. Add 2 items as guest and go to cart page
+3. Clear cookies/cache
+4. Refresh page","item= Nexus 6, Nokia lumia 1520",Cart becomes empty,"Cart contains so many items that weren't chosen previously, including repeated items with a total $163180",Fail,
+TC_CP7,Cart sync across devices,"1. Open https://www.demoblaze.com/
+Account exists but not logged in","2. Log in on Device A
+3. Add 2 items
+4. Log in on Device B
+5. Open cart","username=guest_user2025
+password=1
+item= Nexus 6, Nokia lumia 1520        ",Cart synced on both devices,Cart synced on both devices,Pass,
+TC_CP8,Guest → sign up → logout → login again,"1. Open https://www.demoblaze.com/
+User not registered","2. Add 2 items as guest
+3. Sign up and log in
+4. Log out
+5. Log in again
+6. Check cart","username=guest_user2025
+password=1
+item= Nexus 6, Nokia lumia 1520        ",Items persist after re-login,"Cart is empty, and items disappeared.",Fail,
+2- Multiple Tabs Session Handling,,,,,,,,
+TC_MTSH1,Cart sync across tabs when adding item,1. Open https://www.demoblaze.com/ User logged in,2. In Tab 1 add item to cart 3. In Tab 2 open cart,username=guest_user2025 password=1 item= Nexus 6,Item added in Tab 1 should appear in Tab 2 cart,Item appeared successfully in tab 2 cart,Pass,
+TC_MTSH2,Cart sync across tabs when removing item,1. Open https://www.demoblaze.com/ User logged in and cart has at least 1 item,2. In Tab 1 remove item from cart 3. In Tab 2 open cart,username=guest_user2025 password=1 item= Nexus 6,Item removed in Tab 1 should also disappear from Tab 2 cart,Item removed successfully,Pass,
+TC_MTSH3,Logout in one tab ends session in another,1. Open https://www.demoblaze.com/ User logged in in 2 tabs,2. In Tab 1 log out 3. In Tab 2 try to open cart,username=guest_user2025 password=1,User should also be logged out in Tab 2,Tab 2 logged out successfully,Pass,
+TC_MTSH4,Logging in one tab reflects in another,1. Open https://www.demoblaze.com/ User not logged in in both tabs,"2. In Tab 1 log in 
+3. In Tab 2 open cart",username=guest_user2025 password=1,Tab 2 should recognize user as logged in,Tab 2 recognizes user as logged in and opens the right Cart,Pass,
+TC_MTSH5,Session persistence with multiple tabs refresh,1. Open https://www.demoblaze.com/ User logged in in multiple tabs,"2. Add item in Tab 1 
+3. Refresh Tab 2 and open cart",username=guest_user2025 password=1 item= Nexus 6,Cart contents remain consistent across refreshed tabs,Cart contents remain consistent across refreshed tabs,Pass,
+TC_MTSH6,Cart item deletion after logout in multi-tab session,1. Open https://www.demoblaze.com/ User logged in in multiple tabs,"2. Add item in Tab 1 
+2.1 Goto Cart page
+3. log out from Tab 2
+4. remove item from Tab 1
+5. log in again
+6. Goto Cart page",username=guest_user2025 password=1 item= Nexus 6,"Cart page will show the item undeleted, because it was deleted after logging out","Cart is empty and item was deleted, although the session was supposed to expire",Fail,
+"3- UI/UX & Responsiveness
+",,,,,,,,
+TC_UU1,Homepage responsiveness on different screen sizes,User not logged in,1. Open https://www.demoblaze.com on desktop browser.2. Resize window to tablet-like dimensions.3. Resize window to mobile-like dimensions.4. Observe layout and components.,"Device types (Desktop, Tablet, Mobile)","Layout adapts to screen size (menu collapses, images resize, no overlapping).","-The header layout isn't adaptable with tablet and mobile sizes.
+-The slideshow below header doesn't appear when wedth is lower than 800px",Fail,
+TC_UU2,Navigation menu usability on mobile,"User not logged in, mobile view",1. Open https://www.demoblaze.com on mobile.2. Click the categories menu.3. Navigate to different categories.,N/A,All items should be accessible without overlap or cut-off.,All items appear and are accessible,Pass,
+TC_UU3,Product grid alignment across devices,User not logged in,1. Open homepage on desktop.2. Observe product grid layout.3. Switch to tablet and mobile views.4. Check product alignment.,N/A,Products display consistently without broken alignment or hidden items.,Products display consistently without broken alignment or hidden items.,Pass,
+TC_UU4,Image scaling and clarity,User not logged in,1. Open product page (Nexus 6).2. View image on desktop.3. Resize to tablet and mobile.4. Zoom in/out.,Item = Nexus 6,"Images scale properly, remain clear, no distortion or cropping.","Images scale properly, remain clear, no distortion or cropping.",Pass,
+TC_UU5,Button and link accessibility (tap targets),"User not logged in, mobile view","1. Open homepage on mobile.2. Try clicking Add to Cart, Login, Sign up.3. Check spacing and tap area size.",N/A,"Buttons and links are easy to tap, not too small or too close together.","-Buttons and links like login and sign up don't appear well to normal user
+-After clicking add to cart the top menu doesn't appear properly",Fail,
+TC_UU6,Checkout form responsiveness,User logged in,1. Log in.2. Add item to cart.3. Proceed to checkout page on desktop.4. Resize window to mobile.5. Fill form fields.,"username=guest_user2025, password=1","Form adapts properly, input fields visible and usable without horizontal scroll.","Form adapts properly, input fields visible and usable without horizontal scroll, BUT fields don't appear in proper way, it extends outside the screen.",Fail,
+4- Security and validation,,,,,,,,
+TC_SEC1,SQL Injection on Login,User not logged in,1. Open the Login modal.2. Enter ' OR '1'='1 in the username field and any password.3. Click “Log in.”,username = ' OR '1'='1password = any,Login must be rejected. No unauthorized access or SQL error messages should appear.,Login is rejected,Pass,
+TC_SEC2,Input Validation on Signup (Special Characters),User not logged in,1. Open the Signup modal.2. Enter a username with invalid/special characters.3. Click “Sign up.”,"username = user!@#,password = Pass123",System should reject invalid characters or display a validation message. No crash should occur.,System accepted invalid characters,Fail,
+TC_SEC3,Password Strength Validation,User not logged in,1. Open Signup modal.2. Enter a weak password like “1234.”3. Click “Sign up.”,password = 1234,A warning or validation message should appear requiring a stronger password.,"no warning msg, system accepts weak passwords",Fail,
+TC_SEC4,Access Control: Protected Pages Without Login,User not logged in,"1. Try to directly access /cart.html via URL, without adding any item to cart ",URL = /cart.html or /order.html,System should redirect to login modal or block access.,System accepts going directly to cart page,Fail,
+TC_SEC5,HTTPS Enforcement,Any,1. Open site using http://www.demoblaze.com.2. Observe if redirection occurs.,URL = http://www.demoblaze.com,Website should automatically redirect to https://; no mixed-content warning should appear.,redirects to https successfully ,Pass,
+TC_SEC6,Rate Limiting on Login Attempts,User not logged in,"1. Attempt to log in multiple times (e.g., 10 times) with wrong passwords from the same IP.2. Observe response.",username = testuserpassword = wrong,"After several failed attempts, system should show CAPTCHA, temporary lock, or “Too many attempts” message.",System allows limitless attempts without showing captcha,Fail,
+5- Error Handling & Messages,,,,,,,,
+TC_EH1,Login with invalid credentials,User not logged in,1. Open Login modal.2. Enter invalid username and password.3. Click “Log in.”,"username = dqwfswr3,Userpassword = fdbsdbdb",Alert message appears: “User does not exist.”,Alert message appears: “User does not exist.”,Pass,
+TC_EH2,Login with empty fields,User not logged in,1. Open Login modal.2. Leave username and password blank.3. Click “Log in.”,,Alert message appears: “Please fill out Username and Password.”,Alert message appears: “Please fill out Username and Password.”,Pass,
+TC_EH3,Sign up with existing username,User not logged in,1. Open Sign up modal.2. Enter a username that already exists.3. Click “Sign up.”,"username=guest_user2025
+password=1",Alert message appears: “This user already exists.”,Alert message appears: “This user already exists.”,Pass,
+TC_EH4,Add same item twice to cart,User logged in,1. Log in.2. Add a product to the cart.3. Add the same product again.4. Open Cart page.,"username=guest_user2025
+password=1","System either: (a) shows one instance only, or (b) shows both with correct quantity and total price — no crash or duplicate error.",System shows the item twice with correct item numbers,Pass,
+TC_EH5,Checkout with empty cart,User logged in,1. Log in.2. Go to Cart page with no products.3. Click “Place Order.”,"username=guest_user2025
+password=1",Alert message appears: “Your cart is empty.” or order cannot proceed.,"No alert msg appear, and the purchase completes normally",Fail,
+TC_EH6,Place order with missing fields,User logged in,"1. Add an item to cart.2. Go to “Place Order.”3. Leave one or more fields blank (e.g., Name or Credit Card).4. Click “Purchase.”",,Alert message appears: “Please fill out all required fields.”,Alert message appears: “Please fill out all required fields.”,Pass,
+TC_EH7,Invalid credit card format,User logged in,"1. Add item to cart.2. Open “Place Order.”3. Enter invalid credit card number (e.g., letters or too short).4. Click “Purchase.”",Credit Card = abcd123,Alert or validation message appears: “Invalid card number.”,"No alert msg appear, and the purchase completes normally",Fail,
