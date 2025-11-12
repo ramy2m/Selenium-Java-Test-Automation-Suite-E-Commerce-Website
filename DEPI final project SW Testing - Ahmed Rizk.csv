@@ -1,0 +1,176 @@
+ID,Title,Preconditions,Steps,Test Data,Expected result,Actual Result,Status,Bug report link
+Checkout (place order flow),,,,,,,,
+TC1,Place an order after adding an item to cart,User is in home page,"-click on the product
+-click on add to cart then click ok
+-navigate to cart
+-click on place order
+-fill in the form 
+-click on purchase","-name : ahmed
+-credit card : 12345","- A confirmation appear with amount ,card number,name and date
+- clicking Ok returns to homepage","- A confirmation appear with amount ,card number,name and date
+- clicking Ok returns to homepage",Pass,
+TC2,Place order with empty cart,User is in home page,"-navigate to cart without adding any items
+-click on place order
+","-name : ahmed
+-credit card : 12345","-error message appear ""Please add items to your cart""","-the form opens and
+- a confirmation appears with no items in the cart",Fail,
+TC3,Place order with empty form,User is in home page,"-click on the product
+-click on add to cart then click ok
+-navigate to cart
+-click on place order
+-leave the form blank 
+-click on purchase",---,"-form should not submit
+-error message appear ""Please fill the form""","-form is not submitted
+-error message appears",Pass,
+TC4,Remove product from cart before checkout,User is in home page,"-click on the product
+-click on add to cart then click ok
+-navigate to cart and click delete
+",---,"-no order is placed 
+-cart should be empty",-the cart is empty,Pass,
+TC5,Verify purchase amount match cart total,User is in home page,"-add more products to cart
+-navigate to cart
+-note the total price
+proceed to place order and complete it",---,-total amount matches the cart total,-total amount matches the cart total,Pass,
+TC6,Reuse place order flow after previous purchase,User is in home page,"-complete a full purchase
+-add another product
+-place order again","-name : ahmed
+-credit card : 12345","-second order can placed successfuly
+-confirmation shown each time
+-cart reset after each purchase","-second order placed successfuly
+-confirmation shown each time
+-cart reset after each purchase",Pass,
+"Payment validation (card , expiry , name )",,,,,,,,
+TC1,"Verify form submits successfully with valid name,card number and expiry details","-User is in cart page and there is at least one item in the cart
+-click place order to open payment model","-enter all fields 
+-click purchase","name: ahmed
+country: egypt 
+city: cairo 
+credit card: 12345
+month: 12
+year: 2030","-confirmation message appear with purchase ID and amount
+","-confirmation message appear with purchase ID and amount
+",Pass,
+TC2,Empty field submission,"-User is in cart page and there is at least one item in the cart
+-click place order to open payment model","-leave all fields empty
+-click purchase",---,"-payment is not proceed
+-no confirmation appear
+-alert is shown","-error message "" Please fill out name and creditcard""",Pass,
+TC3,Invalid credit card,"-User is in cart page and there is at least one item in the cart
+-click place order to open payment model","-enter all fields with invalid credit card
+-click purchase","name: ahmed
+country: egypt 
+city: cairo 
+credit card: abcde
+month: 12
+year: 2030","-payment is not proceed
+-form is rejected","-confirmation message appear with purchase ID and amount
+",Fail,
+TC4,Expiry month (out of range),"-User is in cart page and there is at least one item in the cart
+-click place order to open payment model","-enter all fields with out of range month 
+-click purchase","name: ahmed
+country: egypt 
+city: cairo 
+credit card: 12345
+month: 13
+year: 2030","-payment is not proceed
+-form is rejected","-confirmation message appear with purchase ID and amount
+",Fail,
+TC4,Expiry year ( past),"-User is in cart page and there is at least one item in the cart
+-click place order to open payment model","-enter all fields with year in the past 
+-click purchase","name: ahmed
+country: egypt 
+city: cairo 
+credit card: 12345
+month: 12
+year: 2020","-payment is not proceed
+-form is rejected","-confirmation message appear with purchase ID and amount
+",Fail,
+TC5,Name field empty,"-User is in cart page and there is at least one item in the cart
+-click place order to open payment model","-leave name empty 
+-enter other fields
+-click purchase","name: 
+country: egypt 
+city: cairo 
+credit card: abcde
+month: 12
+year: 2030","-payment is not proceed
+-form is rejected","-error message "" Please fill out name and creditcard""",Pass,
+TC6,Year and month with text ,"-User is in cart page and there is at least one item in the cart
+-click place order to open payment model","-enter all fields
+-click purchase","name: ahmed
+country: egypt 
+city: cairo 
+credit card: 12345
+month: twelve
+year: two thousand thirty","-payment is not proceed
+-form is rejected","-confirmation message appear with purchase ID and amount
+",Fail,
+TC7,Name with only special characters,"-User is in cart page and there is at least one item in the cart
+-click place order to open payment model","-enter all fields
+-click purchase","name: !@#$%
+country: egypt 
+city: cairo 
+credit card: 12345
+month: 12
+year: 2030","-payment is not proceed
+-form is rejected","-confirmation message appear with purchase ID and amount
+",Fail,
+TC8,Valid card with spaces,"-User is in cart page and there is at least one item in the cart
+-click place order to open payment model","-enter all fields
+-click purchase","name: ahmed
+country: egypt 
+city: cairo 
+credit card: 1   2     345
+month: 12
+year: 2030","-payment is not proceed
+-form is rejected","-confirmation message appear with purchase ID and amount
+",Fail,
+Logout,,,,,,,,
+TC1,Logout button is visible after login,-User is logged in,-observe page header,"-Username : Ahmed321
+-Password : 123456","-The logout button is present and clickable
+","-The logout button is present and clickable
+",Pass,
+TC2,Successful logout via the logout button,-User is logged in,-click logout,"-Username : Ahmed321
+-Password : 123456",-click logout,-User is logout from the homepage,Pass,
+TC3,Logout from a page and try to complete order from different page,-User is logged in,"-open different pages from website and logout from one page 
+-try to complete order from another page","-Username : Ahmed321
+-Password : 123456",- User is logged out from all pages ,- User is logged out from all pages ,Pass,
+TC4,Multiple logout clicks,-User is logged in,-click logout twice quickly,"-Username : Ahmed321
+-Password : 123456",-The second click should not cause errors and user should be logged out,-user is logged out and nothing unexpected happened,Pass,
+TC5,Back button after logout,-User is logged in,-click logout then click back,"-Username : Ahmed321
+-Password : 123456",-User should login again,-User is returned while he was logged in,Fail,
+TC6,Refresh after logout,-User is logged in,-click logout then click refresh,"-Username : Ahmed321
+-Password : 123456",-User remain logged out,-User remain logged out,Pass,
+TC7,Logout while a transaction is in progress,-User is logged in,-click logout during checkout ,"-Username : Ahmed321
+-Password : 123456",-System should terminate session and not leave partial transaction open,-Sytem terminated session and user logged out,Pass,
+Navigation& header menu,,,,,,,,
+TC1,Verify that the website logo is displayed,,"-open the site
+-observe top left corner",---,-logo is visible on the top left corner,-logo is visible on the top left corner,Pass,
+TC2,Verify that clicking the logo reloads the homepage,-open the site,"-navigate to another page
+-click the store logo",---,-redirect to the homepage,-redirect to the homepage,Pass,
+TC3,Verify presence of navigation menu items,-open the site,"-open the homepage
+-observe menu bar",---,-menu items are visible,-menu items are visible,Pass,
+TC4,Verify “Home” link functionality,-open the site,-click on home link ,---,navigates to homepage,navigates to homepage,Pass,
+TC5,Verify “Contact” link opens contact modal,-open the site,-click on contact link,---,-modal for contacting is displayed,-modal for contacting is displayed,Pass,
+TC6,Verify “About us” link opens about modal,-open the site,-click about us link,---,-about us modal is displayed,-about us modal is displayed,Pass,
+TC7,Verify “Cart” link redirects to cart page,-open the site,-click on cart link,---,-navigate to cart page,-navigate to cart page,Pass,
+TC8,Verify “Log in” link opens login modal,-open the site,-click on login link,---,-login modal is displayed,-login modal is displayed,Pass,
+TC9,Verify “Sign up” link opens signup modal,-open the site,-click on signup link,---,-signup modal is displayed,-signup modal is displayed,Pass,
+TC10,Verify product categories are listed,-open the site,"-open homepage
+-navigate left side menu",---,-categories are listed,-categories are listed,Pass,
+TC11,"Verify ""Phones"" filter displays only phone products",-open the site,"-open homepage
+-click on phones category",---,-the product list shows phones only,-the product list shows phones only,Pass,
+TC12,"Verify ""Laptops"" filter displays only laptop products",-open the site,"-open homepage
+-click on laptops category",---,-the product list shows laptops only,-the product list shows laptops only,Pass,
+TC13,"Verify ""Monitors"" filter displays only monitor products",-open the site,"-open homepage
+-click on monitors category",---,-the product list shows monitors only,-the product list shows monitors only,Pass,
+Product Image & Media Validation,,,,,,,,
+TC1,Verify that each product has at least one image displayed,-open the site,-Check all visible products,---,-Each product card should display a visible image.,-all images are visible,Pass,
+TC2,Verify that clicking a product opens the detailed product image,-open the site,-Click on any product image,---,-User is redirected to the product details page with the product image displayed.,-User should be redirected to the product page correctly,Pass,
+TC3,Verify that image resolution is clear and not pixelated,-open the site,"-Open the product page
+-Observe clarity and scaling of image",---,-Image should appear clear and high-quality,-Images appeared clear,Pass,
+TC4,Verify that the product image corresponds to the correct product,-open the site,-Compare product title and image,---,-Image shown must match the product name and description,-Images are correctly refer to the product,Pass,
+TC5,Verify that images do not overlap with text or buttons,-open the site,"-Scroll through the product page
+-Observe photos with text",---,"-Image placement should be neat,no overlap or misalignment with text",-No overlap between images and text,Pass,
+TC6,Verify image loading (no broken links),-open the site,"-Inspect each product image
+-Check for broken image icon or empty space.",---,-All images should load without broken icons or “image not found” placeholders,-all images appeared correctly,Pass,
