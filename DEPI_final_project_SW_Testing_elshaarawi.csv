@@ -1,0 +1,31 @@
+Login / Signup Test Cases,Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4
+Test Case ID,Scenario,Steps,Expected Result,Actual Result
+TC_Login_01,Login with valid credentials,Enter valid username & password and click login,User logged in successfully,Pass
+TC_Login_02,Login with invalid password,"Enter valid username & wrong password, click login",Error message displayed,Fail
+TC_Login_03,Login with empty fields,"Leave username & password blank, click login",Validation error displayed,Fail
+TC_Signup_01,Signup with valid data,"Enter new username, password, click signup",Account created successfully,Pass
+TC_Signup_02,Signup with existing email,Enter already registered email & password,Error message displayed,Fail
+,,,,
+Product Browsing & Categories Test Cases,,,,
+Test Case ID,Scenario,Steps,Expected Result,Actual Result
+TC_Browse_01,Browse by category,Click category 'Phones',Only phones are displayed,Pass
+TC_Browse_02,Go back to Home,Click 'Home' button,All products displayed,Pass
+TC_Browse_03,Browse with pagination,Click Next/Previous,Navigate correctly between pages,Fail
+,,,,
+Product Details Page Test Cases,,,,
+Test Case ID,Scenario,Steps,Expected Result,Actual Result
+TC_Product_01,Open product details,Click on product,Details page opens,Pass
+TC_Product_02,Check product details,"View name, price, description",All details visible correctly,Pass
+TC_Product_03,Check Add to Cart button,Look for Add to Cart button,Button visible and functional,Pass
+,,,,
+Add to Cart Test Cases,,,,
+Test Case ID,Scenario,Steps,Expected Result,Actual Result
+TC_Cart_01,Add single product to cart,Click Add to Cart,Product appears in cart,Pass
+TC_Cart_02,Add multiple products,Add 2 different products,Both appear in cart,Pass
+TC_Cart_03,Add same product twice,Click Add to Cart twice,Product duplicated or quantity updated,Pass
+,,,,
+Remove from Cart Test Cases,,,,
+Test Case ID,Scenario,Steps,Expected Result,Actual Result
+TC_Remove_01,Remove single product,Click delete on one product,That product removed only,Pass
+TC_Remove_02,Remove all products,Delete each product,Cart becomes empty,Pass
+TC_Remove_03,Place order with empty cart,Click Place Order with no items,Error/validation shown,Fail
