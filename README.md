@@ -1,72 +1,163 @@
-# Automated UI Testing for an E-Commerce Website
 
-## Project Overview
-This project is part of the Digital Egypt Pioneers Initiative (DEPI) graduation project.  
-We developed an **automated UI testing framework** for a demo e-commerce website using **Java and Selenium WebDriver**.  
-The focus is on writing **clean, maintainable, and reusable** automated test scripts that verify the core user journeys of an online shopping platform.
+# **Software Testing Project Documentation**
 
----
+## **Project Title:**
 
-## Objectives
-- Automate key user flows on an e-commerce website.
-- Apply testing best practices: assertions, waits, and test data management.
-- Refactor tests using the **Page Object Model (POM)** design pattern.
-- Deliver a well-structured and maintainable testing framework.
+**Multi-Part Software Testing (Manual, Automation, API)**
 
----
+## **Team Members:**
 
-## Tech Stack
-- **Programming Language:** Java  
-- **Automation Tool:** Selenium WebDriver  
-- **Build Tool:** Maven/Gradle  
-- **Testing Framework:** TestNG / JUnit  
-- **Target Website:** [Swag Labs Demo](https://www.saucedemo.com/)  
+* Mohamed
+* Ahmed
+* Ramy
+
+## **Project Links:**
+
+* **GitHub Repository:** [https://github.com/ramy2m/Selenium-Java-Test-Automation-Suite-E-Commerce-Website](https://github.com/ramy2m/Selenium-Java-Test-Automation-Suite-E-Commerce-Website)
+* **Demo Websites:**
+
+  * Demoblaze
+  * OrangeHRM
+  * DummyJSON
 
 ---
 
-## Project Structure
-ecommerce-ui-automation/
-│── src/test/java/
-│ ├── tests/ # Test cases
-│ ├── pages/ # Page Object classes
-│ └── utils/ # Utility classes (waits, data, etc.)
-│
-│── pom.xml # Maven dependencies
-│── README.md # Project documentation
+# **1. Project Planning**
+
+## **Project Idea**
+
+This project focuses on end-to-end **Software Testing** across multiple layers:
+
+* **Manual Testing**
+* **Automation Testing**
+* **API Testing**
+
+The aim is to validate **functionality**, **usability**, **data integrity**, and **core workflows** of selected demo web applications.
+
+## **Objectives**
+
+* Gain practical, hands-on experience in Manual, Automation, and API testing.
+* Validate multiple functional modules across different systems.
+* Document test cases, executions, bugs, and observations.
+* Build a structured automation framework using Java, Selenium, and TestNG.
+
+## **Scope**
+
+### **Manual Testing**
+
+Covers key modules such as:
+
+* User Login / Signup
+* Product browsing and categories
+* Product details
+* Cart operations
+* Checkout and payment validation
+* Basic performance and usability observations
+
+### **Automation Testing**
+
+Selenium/TestNG scripts for:
+
+* Valid Login
+* Invalid Login
+* Add to Cart flow
+* Checkout scenarios
+
+### **API Testing**
+
+Using Postman for endpoints such as:
+
+* `POST /login`
+* `POST /signup`
+* `GET /products`
+* Basic CRUD requests (where supported)
 
 ---
 
-## Test Coverage
-1. **Login Flow** – Valid and invalid login tests.  
-2. **Product Search & Add to Cart** – Searching and adding an item.  
-3. **Checkout Process** – Verifying cart and completing checkout.  
-4. **Assertions** – Page titles, cart counters, confirmation messages.  
+# **2. Stakeholder Analysis**
+
+| Stakeholder                             | Interest / Role                                    | Delivered by Project                        |
+| --------------------------------------- | -------------------------------------------------- | ------------------------------------------- |
+| **End Users**                           | Using a functional website with correct operations | Tested and validated features               |
+| **QA Engineers (Mohamed, Ahmed, Ramy)** | Execute manual, automation, and API tests          | Clear test cases, scenarios, and results    |
+| **Admin / System Owner**                | Ensure stability and correctness of core features  | Validation of modules and secure operations |
 
 ---
 
-## How to Run
-1. Clone the repository:
-   ```bash
-   https://github.com/ramy2m/Selenium-Java-Test-Automation-Suite-E-Commerce-Website
-2. Install dependencies:
- mvn clean install
-3. Run the test suite:
-mvn test
-   Sample Report
+# **3. Database Design (Mock Data)**
 
-After execution, TestNG generates an HTML report showing the pass/fail results of all test cases.
+### **Tables**
 
- Author
+* **Users** – Login credentials, profile info
+* **Products** – Product ID, name, price, category
+* **Orders** – Order items, payment info, timestamps
+* **Cart** – Items added to cart for each user
 
- Ramy Mohamed Hussein – Test Automation Engineer
- Ahmed Abdallah Rizk – Test Automation Engineer
- Mohamed El Shaarawy – Test Automation Engineer
+### **Relationships**
 
- Future Enhancements
+* **One User → Many Orders**
+* **One Order → Many Products**
+* **One User → One Cart**
 
-CI/CD integration with GitHub Actions.
+---
 
-Data-driven testing (Excel/CSV).
+# **4. UI/UX Design**
 
-Cross-browser testing (Chrome, Firefox, Edge).
+### **Manual Testing Screens**
+
+* Login / Signup
+* Product browsing & categories
+* Product details
+* Cart page & checkout flow
+* Payment validation
+
+### **Automation Testing Screens**
+
+* Dashboard & admin panels
+* Employee list (Add / Update / Delete)
+* System user management
+
+### **User Flow Examples**
+
+* **Customer:**
+  `Login → Browse Products → Add to Cart → Checkout → Payment → Order Confirmation`
+
+* **Admin:**
+  `Login → Add System User → Validate Access → Logout → Login as New User`
+
+---
+
+# **5. Implementation**
+
+## **Manual Testing**
+
+* Test cases documented in Excel/Word
+* Includes steps, expected results, and execution status
+
+## **Automation Testing**
+
+Built using:
+
+* **Java**
+* **Selenium WebDriver**
+* **TestNG**
+* **Maven**
+
+Includes scripts for:
+
+* Successful login
+* Invalid login
+* Add to cart flow
+* Checkout test cases
+
+**Repository:** *(same as top link)*
+
+## **API Testing**
+
+Using **Postman** collections for:
+
+* Login
+* Signup
+* Product listing
+* Response validation (status codes, payload, schema)
 
