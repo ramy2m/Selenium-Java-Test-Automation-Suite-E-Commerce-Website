@@ -1,0 +1,7 @@
+Request Name,Test Case #,Description,Expected Result,Actual Result,Status
+Login,Login_TC1,Status code check,Response status code = 200,Response status code = 200,Pass
+Login,Login_TC2,Access token exists,Response JSON has property accessToken,Response JSON has property accessToken,Pass
+Login,Login_TC3,Save access token,accessToken saved to environment variable,accessToken saved to environment variable,Pass
+Get User Profile,GProfile_TC1,Status code check,Response status code = 200,Response status code = 200,Pass
+Get User Profile,GProfile_TC2,Verify username,"Response JSON username = ""emilys""","Response JSON username = ""emilys""",Pass
+Get User Profile,GProfile_TC3,Verify email format,Response JSON email matches valid email regex /^\S+@\S+\.\S+$/,Response JSON email matches valid email regex /^\S+@\S+\.\S+$/,Pass
